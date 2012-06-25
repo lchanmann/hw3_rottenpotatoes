@@ -22,8 +22,7 @@ Background: movies have been added to database
   And  I am on the RottenPotatoes home page
   
 Scenario: restrict to movies with 'PG' or 'R' ratings
-  When I check "ratings[PG]"
-  And I check "ratings[R]"
+  When I check the following ratings: PG, R
   And I press "ratings_submit"
   Then I should not see "Aladdin"
   And I should see "The Terminator"
