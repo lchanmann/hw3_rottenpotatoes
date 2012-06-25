@@ -35,3 +35,21 @@ Then /I should( not)? see the following movies/ do |not_see, movies_table|
     step %{I should#{not_see} see "#{movie['title']}"}
   end
 end
+
+When /I (un)?check all ratings/ do |uncheck|
+  all_ratings = %w{G PG PG-13 R NC-17}
+  step %{I #{uncheck}check the following ratings: #{all_ratings.join ', '}}
+end
+
+Then /I should see none of the movies/ do
+  within_table("movies") do
+    should_not have_selector("#movielist tr")
+  end
+end
+
+Then /I should see all of the movies/ do
+  movies_count = Movie.count
+  within_table("movies") do
+    should have_selector("#movielist tr", count: movies_count)
+  end
+end
