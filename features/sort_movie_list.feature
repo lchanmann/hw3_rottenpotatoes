@@ -28,6 +28,7 @@ Scenario: sort movies alphabetically
   Then I should see "2001: A Space Odyssey" before "Aladdin"
 
 Scenario: sort movies in increasing order of release date
+  Given I check all ratings
+  And I press "Refresh"
   When I follow "Release Date"
-  # your steps here
-
+  Then I should see "The Terminator" before "Aladdin"
