@@ -29,3 +29,9 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
     step %{I #{uncheck}check "ratings[#{rating}]"}
   end
 end
+
+Then /I should( not)? see the following movies/ do |not_see, movies_table|
+  movies_table.hashes.each do |movie|
+    step %{I should#{not_see} see "#{movie['title']}"}
+  end
+end
